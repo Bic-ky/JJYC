@@ -1,0 +1,7 @@
+/* Add this to your existing CSS file or create a new one */
+.custom-slider-area {
+    margin-top: 70px; /* Adjust this value based on your navbar height */
+    position: relative;
+    z-index: 1;
+    height: 1000px; /* Ensure the slider is above other elements */
+}

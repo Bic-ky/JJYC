@@ -1,6 +1,66 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
+
+<!-- PAGE DETAILS AREA START (portfolio-details) -->
+<div class="ltn__page-details-area ltn__portfolio-details-area mb-105">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="ltn__page-details-inner ltn__portfolio-details-inner">
+                    <div class="ltn__blog-img">
+                        <img src="{% static "img/logo.jpg" %}" alt="Image">
+                    </div>
+                    <h2>{{ project.title }}</h2>
+                    <p>{{ project.description }}</p>
+                    <ul>
+                        <li><strong>Working Areas:</strong> {{ project.working_areas }}</li>
+                        <li><strong>Budget:</strong> ${{ project.total_budget }}</li>
+                        <li><strong>Partners:</strong> {{ project.partners }}</li>
+                    </ul>
+
+                    <!-- Rest of your template content -->
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <!-- Your sidebar content -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PAGE DETAILS AREA END -->
+
+
+<!-- PAGE DETAILS AREA START (portfolio-details) -->
+<div class="ltn__page-details-area ltn__portfolio-details-area mb-105">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="ltn__page-details-inner ltn__portfolio-details-inner">
+                    <div class="ltn__blog-img">
+                        <img src="{% static "img/logo.jpg" %}" alt="Image">
+                    </div>
+                    <h2>{{ project.title }}</h2>
+                    <p>{{ project.description }}</p>
+                    <ul>
+                        <li><strong>Working Areas:</strong> {{ project.working_areas }}</li>
+                        <li><strong>Budget:</strong> ${{ project.budget }}</li>
+                        <li><strong>Partners:</strong> {{ project.partners }}</li>
+                    </ul>
+
+                    <!-- Rest of your template content -->
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <!-- Your sidebar content -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PAGE DETAILS AREA END -->
+
     <!-- BREADCRUMB AREA START -->
     <div class="text-center bg-overlay-white-30">
         <div class="container">

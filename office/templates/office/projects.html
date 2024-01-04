@@ -34,13 +34,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-left">Project Name</td>
-                                        <td class="text-left">Partner Name</td>
-                                        <td class="text-left">Start Date</td>
-
-                                    <tr/>
-                                    <!-- Add more rows as needed -->
+                                    {% for project in projects %}
+                                        <tr>
+                                            <td class="text-left">
+                                                <a href="{% url 'project_details' project.id %}">
+                                                    {{ project.title }}
+                                                </a>
+                                            </td>
+                                            <td>{{project.partners}}</td>
+                                            <td>{{project.end_date}}</td>
+                                            <!-- Other table data -->
+                                        </tr>
+                                    {% empty %}
+                                        <tr>
+                                            <td colspan="3">No completed projects available.</td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                             

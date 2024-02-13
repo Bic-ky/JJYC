@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+{% if ongoing_projects %}
+<!-- SLIDER AREA START (slider-3) -->
+<div id="projectSlider" class="ltn__slider-area ltn__slider-3 section-bg-1 mb-3">
+    <div class="ltn__slide-one-active slick-slide-arrow-1">
+        <!-- ltn__slide-item -->
+        {% for proj in ongoing_projects %}
+        <div class="ltn__slide-item ltn__slide-item-2 ltn__slide-item-3-normal ltn__slide-item-3 bg-image mt-10" data-bg="{{ proj.photos.url }}" style="height: 800px; position: relative; margin-top:50px; background-position: center; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+            <!-- Custom Text -->
+            <div class="custom-text" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; color: white;">
+                <div class="ltn__copyright-area ltn__copyright-2 section-bg-7 plr--5 rounded-lg ">
+                    <div class="col-lg-12">
+                        <div class="ltn__copyright-design clearfix">
+                            <p>JJYC envisions to empower youth, promote social justice, and inspire joy through collective action. <span class="current-year"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Add the Slick slider initialization script below -->
+<script>
+    // Wait for the document to be fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize the Slick slider
+        $('#projectSlider').slick({
+            autoplay: true,
+            autoplaySpeed: 3000, // Set autoplay speed to 3 seconds
+            arrows: false,
+            dots: true // Show navigation dots
+        });
+
+        // Trigger modal on page load
+        $('#notificationModal').modal('show');
+    });
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true" style="position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);"> <!-- Added inline styles for fixed position -->
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 24px; color: red;"> 
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Display modal data if available -->
+                {% if modal_data %}
+                <h5 class="modal-title text-center " id="exampleModalLabel">{{ modal_data.title }}</h5>
+                <img src="{{ modal_data.image.url }}" class="img-fluid" alt="...">
+                <p>{{ modal_data.description }}</p>
+                <div class="btn-container">
+                    <a href="{% if modal_data and modal_data.file %}{{ modal_data.file.url }}{% else %}#{% endif %}" class="btn btn-primary rounded-lg p-2 {% if not modal_data or not modal_data.file %}disabled{% endif %}" {% if not modal_data or not modal_data.file %}disabled{% endif %} target="_blank">
+                        <i class="fas fa-file-pdf mr-2"></i> <!-- Font Awesome PDF icon -->
+                        View PDF
+                    </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <!-- Add one tab space -->
+                    <a href="{% url 'contact' %}" class="btn btn-success rounded-lg p-2"> 
+                        <i class="fas fa-phone mr-2"></i>Contact Us
+                    </a>
+                </div>
+                
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- ABOUT US AREA START -->
+    <div class="ltn__about-us-area  pt-120 pb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 align-self-center">
+                    <div class="about-us-img-wrap about-img-left">
+                        <img src="{% static "img/others/17.png" %}" alt="About Us Image">
+                        {% comment %} <img src="{% static "img/jjyc3.jpg" %}" alt="About Us Image"> {% endcomment %}
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    <div class="about-us-info-wrap">
+                        <div class="section-title-area ltn__section-title-2">
+                            <h6 class="section-subtitle ltn__secondary-color"><span><i class="fas fa-square-full"></i></span> What we work for</h6>
+                            <h1 class="section-title">Working for Social Cause and Welfare </h1>
+                            <p>JJYC envisions to empower youth, promote social justice, and inspire joy through collective action.</p>
+                        </div>
+                        <p class="text-justify">JJYC (Jan Jagaran Youth Club) stands as a dedicated force for social transformation and well-being. Through its unyielding commitment, JJYC tirelessly pursues the betterment of society by addressing pressing issues and uplifting underprivileged communities. The organization's initiatives encompass a wide range of areas, from advocating for justice and equality to fostering joy and empowerment among the youth. With a collaborative approach and a network of passionate volunteers, JJYC embodies the power of collective action in driving positive change. Its name itself reflects the dual pillars of its mission: to bring justice to the underserved and to infuse the journey with the joy that comes from creating a more just and equitable world.</p>
+
+                        <div class="about-author-info d-flex">
+                            <div class="author-name-designation  align-self-center mr-30">
+                                <!-- <h4 class="mb-0">Jerry Henson</h4>
+                                <small>/ Shop Director</small> -->
+                                <div class="btn-wrapper">
+                                    <a class="btn theme-btn-2 btn-effect-1" href="{% url "about" %}">About Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT US AREA END -->
+
+
+    <!-- IMAGE SLIDER AREA START (img-slider-3) ( Product Section) -->
+    <div class="ltn__img-slider-area pt-120 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title-area ltn__section-title-2 text-center">
+                        <h6 class="section-subtitle ltn__secondary-color"><span><i class="fas fa-square-full"></i></span> Construction Projects</h6>
+                        <h1 class="section-title">Our Recent Projects</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row ltn__image-slider-3-active slick-arrow-1 slick-arrow-1-inner---">
+                <div class="col-lg-12">
+                    <div class="ltn__img-slide-item-3 ltn__img-slide-item-3-2">
+                        <a href="portfolio-details.html">
+                            <img src="{% static "img/product-4/1.jpg" %}" alt="Image">
+                        </a>
+                        <div class="ltn__img-slide-info">
+                            <div class="ltn__img-slide-info-brief">
+                                <h6>Construction</h6>
+                                <h1><a href="portfolio-details.html">Contemporary Vilas</a></h1>
+                            </div>
+                            <div class="btn-wrapper">
+                                <a href="portfolio-details.html" class="btn-- theme-btn-1-- btn-effect-1--">View Properties<i class="flaticon-right-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="ltn__img-slide-item-3 ltn__img-slide-item-3-2">
+                        <a href="portfolio-details.html">
+                            <img src="{% static "img/product-4/2.jpg" %}" alt="Image">
+                        </a>
+                        <div class="ltn__img-slide-info">
+                            <div class="ltn__img-slide-info-brief">
+                                <h6>Construction</h6>
+                                <h1><a href="portfolio-details.html">Empire State Building</a></h1>
+                            </div>
+                            <div class="btn-wrapper">
+                                <a href="portfolio-details.html" class="btn-- theme-btn-1-- btn-effect-1--">View Properties<i class="flaticon-right-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="ltn__img-slide-item-3 ltn__img-slide-item-3-2">
+                        <a href="portfolio-details.html">
+                            <img src="img/product-4/3.jpg" alt="Image">
+                        </a>
+                        <div class="ltn__img-slide-info">
+                            <div class="ltn__img-slide-info-brief">
+                                <h6>Construction</h6>
+                                <h1><a href="portfolio-details.html">Central park Tower</a></h1>
+                            </div>
+                            <div class="btn-wrapper">
+                                <a href="portfolio-details.html" class="btn-- theme-btn-1-- btn-effect-1--">View Properties<i class="flaticon-right-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="ltn__img-slide-item-3 ltn__img-slide-item-3-2">
+                        <a href="portfolio-details.html">
+                            <img src="{% static "img/product-4/1.jpg" %}" alt="Image">
+                        </a>
+                        <div class="ltn__img-slide-info">
+                            <div class="ltn__img-slide-info-brief">
+                                <h6>Construction</h6>
+                                <h1><a href="portfolio-details.html">Contemporary Vilas</a></h1>
+                            </div>
+                            <div class="btn-wrapper">
+                                <a href="portfolio-details.html" class="btn-- theme-btn-1-- btn-effect-1--">View Properties<i class="flaticon-right-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- IMAGE SLIDER AREA END -->
+
+    <!-- ABOUT US AREA START -->
+    <div class="ltn__about-us-area section-bg-6 bg-image-right-before pt-120 pb-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 align-self-center">
+                    <div class="about-us-info-wrap">
+                        <div class="section-title-area ltn__section-title-2 mb-20">
+                            <h6 class="section-subtitle ltn__secondary-color"><span><i class="fas fa-square-full ltn__secondary-color"></i></span> Great Experience In Building</h6>
+                            <h1 class="section-title">Our Specialization &
+                                Company Features</h1>
+                        </div>
+                        <ul class="ltn__list-item-half ltn__list-item-half-2 list-item-margin clearfix">
+                            <li>
+                                <i class="icon-done"></i>
+                                Living rooms are pre-wired for Surround
+                            </li>
+                            <li>
+                                <i class="icon-done"></i>
+                                Luxurious interior design and amenities
+                            </li>
+                            <li>
+                                <i class="icon-done"></i>
+                                Nestled in the Buckhead Vinings communities
+                            </li>
+                            <li>
+                                <i class="icon-done"></i>
+                                Private balconies with stunning views
+                            </li>
+                            <li>
+                                <i class="icon-done"></i>
+                                A rare combination of inspired architecture
+                            </li>
+                            <li>
+                                <i class="icon-done"></i>
+                                Outdoor grilling with dining court
+                            </li>
+                        </ul>
+                        <div class="  ltn__animation-pulse2 text-center mt-30">
+                            <a class="ltn__video-play-btn bg-white--- ltn__secondary-bg" href="https://www.youtube.com/embed/HnbMYzdjuBs?autoplay=1&amp;showinfo=0" data-rel="lightcase">
+                                <i class="fas fa-play  ltn__secondary-color--- white-color"></i>
+                               
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    <div class="about-us-img-wrap about-img-left">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT US AREA END -->
+
+
+
+    <!-- PROGRESS BAR AREA START -->
+    <div class="ltn__progress-bar-area pt-45 pb-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ltn__progress-bar-wrap">
+                        <div class="ltn__progress-bar-inner">
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="ltn__progress-bar-item-2 text-center">
+                                        <div class="progress" data-value='78'>
+                                            <span class="progress-left">
+                                                <span class="progress-bar border-primary"></span>
+                                            </span>
+                                            <span class="progress-right">
+                                                <span class="progress-bar border-primary"></span>
+                                            </span>
+                                            <div class="progress-value">
+                                                <div class="progress-count">78<sup class="small">%</sup></div>
+                                            </div>
+                                        </div>
+                                        <div class="ltn__progress-info">
+                                            <h3>Project Done</h3>
+                                            <p>Construction Simulator</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="ltn__progress-bar-item-2 text-center">
+                                        <div class="progress" data-value='62'>
+                                            <span class="progress-left">
+                                                <span class="progress-bar border-danger"></span>
+                                            </span>
+                                            <span class="progress-right">
+                                                <span class="progress-bar border-danger"></span>
+                                            </span>
+                                            <div class="progress-value">
+                                                <div class="progress-count">62<sup class="small">%</sup></div>
+                                            </div>
+                                        </div>
+                                        <div class="ltn__progress-info">
+                                            <h3>Country Cover</h3>
+                                            <p>Construction Simulator</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock  %}
+

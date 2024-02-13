@@ -13,14 +13,17 @@
     <!-- Place favicon.png in the root directory -->
     <link rel="shortcut icon" href="{% static "img/logo.jpg" %}" type="image/x-icon" />
     <!-- Font Icons css -->
-    <link rel="stylesheet" href="{% static 'office/css/font-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'mainApp/css/font-icons.css' %}">
     <!-- plugins css -->
-    <link rel="stylesheet" href="{% static 'office/css/plugins.css' %}">
+    <link rel="stylesheet" href="{% static 'mainApp/css/plugins.css' %}">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="{% static 'office/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'mainApp/css/style.css' %}">
     <!-- Responsive css -->
-    <link rel="stylesheet" href="{% static 'office/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'mainApp/css/responsive.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    
 
 
 </head>
@@ -36,7 +39,7 @@
 <div class="body-wrapper">    
     
     <!-- HEADER AREA START (header-5) -->
-    <header class="ltn__header-area ltn__header-5 ltn__header-logo-and-mobile-menu-in-mobile ltn__header-transparent bg-dark">
+    <header class="ltn__header-area ltn__header-5 ltn__header-logo-and-mobile-menu-in-mobile ltn__header-transparent bg-dark"  style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);">
        
         
         <!-- ltn__header-middle-area start -->
@@ -46,7 +49,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img src="{% static "img/logo.png" %}" height="80" width="100" alt="Logo"></a>
+                                <a href="index.html"><img src="{% static "img/logo.png" %}" height="60" width="200" alt="Logo"></a>
                             </div>
                             <div class="get-support clearfix d-none">
                                 <div class="get-support-icon">
@@ -74,7 +77,7 @@
                                                 <li><a href="{% url "completed_projects" %}">Completed Projects</a></li>
                                             </ul>
                                         </li>
-                                        <li ><a href="#">Gallery</a>
+                                        <li ><a href="{% url "gallery" %}">Gallery</a>
                                         </li>
                                         <li ><a href="#">Partners</a>
                                         </li>
@@ -171,7 +174,7 @@
                                 <ul>
                                     <li>
                                         <div class="footer-address-icon">
-                                            <i class="icon-placeholder"></i>
+                                            <i class="fas fa-map-marker-alt"></i> <!-- Location icon -->
                                         </div>
                                         <div class="footer-address-info">
                                             <p>Motibagh Kalaiya, Bara Nepal</p>
@@ -179,28 +182,26 @@
                                     </li>
                                     <li>
                                         <div class="footer-address-icon">
-                                            <i class="icon-call"></i>
+                                            <i class="fas fa-phone-alt"></i> <!-- Telephone icon -->
                                         </div>
                                         <div class="footer-address-info">
-                                            <p><a href="tel:+0123-456789">053-</a></p>
+                                            <p><a href="tel:053-551513">053-551513</a></p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="footer-address-icon">
-                                            <i class="icon-mail"></i>
+                                            <i class="far fa-envelope"></i> <!-- Email icon -->
                                         </div>
                                         <div class="footer-address-info">
-                                            <p><a href="mailto:example@example.com">example@example.com</a></p>
+                                            <p><a href="mailto:jjycbara@gmail.com">jjycbara@gmail.com</a></p>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="ltn__social-media mt-20">
                                 <ul>
-                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                    <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="https://www.facebook.com/jjycbara/" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/jjyc-bara-080584102/" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -240,83 +241,6 @@
     </footer>
     <!-- FOOTER AREA END -->
 
-    <!-- MODAL AREA START (Quick View Modal) -->
-    <div class="ltn__modal-area ltn__quick-view-modal-area">
-        <div class="modal fade" id="quick_view_modal" tabindex="-1">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            <!-- <i class="fas fa-times"></i> -->
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                         <div class="ltn__quick-view-modal-inner">
-                             <div class="modal-product-item">
-                                <div class="row">
-                                    <div class="col-lg-6 col-12">
-                                        <div class="modal-product-img">
-                                            <img src="img/product/4.png" alt="#">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-12">
-                                        <div class="modal-product-info">
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                    <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
-                                                </ul>
-                                            </div>
-                            
-                                            <hr>
-                                            <div class="modal-product-brief">
-                                                <p>JJYC envisions to empower youth, promote social justice, and inspire joy through collective action.</p>
-                                            </div>
-                                            <div class="modal-product-meta ltn__product-details-menu-1 d-none">
-                                                <ul>
-                                                    <li>
-                                                        <strong>Categories:</strong> 
-                                                        <span>
-                                                            <a href="#">Parts</a>
-                                                            <a href="#">Car</a>
-                                                            <a href="#">Seat</a>
-                                                            <a href="#">Cover</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            
-                                           
-                                            <hr>
-                                            <div class="ltn__social-media">
-                                                <ul>
-                                                    <li>Share:</li>
-                                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                                    <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                                    
-                                                </ul>
-                                            </div>
-                                            <label class="float-right mb-0"><a class="text-decoration" href="product-details.html"><small>View Details</small></a></label>
-                                        </div>
-                                    </div>
-                                </div>
-                             </div>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- MODAL AREA END -->
-
-
 </div>
 <!-- Body main wrapper end -->
 
@@ -329,12 +253,30 @@
             </div>
         </div>
     </div>
-    <!-- preloader area end -->
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
-    <!-- All JS Plugins -->
-    <script src="{% static 'office/js/plugins.js' %}"></script>
-    <!-- Main JS -->
-    <script src="{% static 'office/js/main.js' %}"></script>
+<!-- DataTables library -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+<!-- DataTables Buttons and Export dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<!-- DataTables Buttons for PDF and Excel -->
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+<!-- All other plugins -->
+<script src="{% static 'mainApp/js/plugins.js' %}"></script>
+
+<!-- Main JS -->
+<script src="{% static 'mainApp/js/main.js' %}"></script>
+
+
+
 
 
   

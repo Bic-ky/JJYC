@@ -1,26 +1,24 @@
 from django.shortcuts import render
-
-from office.models import Projects
+from mainApp.models import Projects, Announcement
+from django.contrib import messages
 
 def index(request):
-    print("here")
     ongoing_projects = Projects.objects.filter(is_completed=False)
 
-    # Loop through the queryset and print information including the photo
-    for project in ongoing_projects:
-        print(f"Project: {project.title}")
-        print(f"Description: {project.description}")
-        print(f"Photo: {project.photos.url}")  # Access the URL of the photo
-        # Add more fields as needed
+    latest_announcement = Announcement.objects.latest('id')
 
-    # You can also pass the projects to the context if you need them in the template
+    modal_data = latest_announcement
+    if not request.session.get('modal_shown', False):
+        request.session['modal_shown'] = True
+    else:
+        messages.success(request, "No Data")
+
     context = {
         'ongoing_projects': ongoing_projects,
+        'modal_data': modal_data,
     }
 
-    # Render the index page with the ongoing projects
-    return render(request, 'office/index.html', context)
-
+    return render(request, 'mainApp/index.html', context)
 
 
 
